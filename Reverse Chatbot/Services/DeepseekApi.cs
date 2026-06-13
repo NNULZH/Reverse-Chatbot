@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Reverse_Chatbot.Interfaces;
+using Reverse_Chatbot.Models;
+
+namespace Reverse_Chatbot.Services
+{
+    internal class DeepseekApi:IDeepseekApi
+    {
+        static readonly HttpClient httpClient = new HttpClient();
+
+        string ApiKey;
+        static readonly string EndPoint = "https://api.deepseek.com";
+
+        public DeepseekApi()
+        {
+            this.ApiKey = "sk-45dbcbfa4dd54352bc2833562c5d223a";
+        }
+
+        public async Task<string> PostAsync(string request)
+        {
+            var RequestData = new DeepseekRequest();
+            RequestData.Messages.Add(new DeepseekMessage { Role = "user",Content = request});
+
+            string jsonBody = JsonSerializer.Serialize(RequestData);            
+            var content = new StringContent(jsonBody,Encoding.UTF8, "application/json");
+            
+            using (var requestMessage = new HttpRequestMessage(HttpMethod.Post, EndPoint))
+            {
+                //开始附加Api请求头
+                requestMessage.Content = content;
+                requestMessage.Headers.Add("Authorization", $"Bearer {ApiKey}");
+
+                try
+                {
+                    var response = await httpClient.SendAsync(requestMessage);
+                    // 如果状态码不是 2xx，会抛出异常
+                    response.EnsureSuccessStatusCode();
+
+                    string responsejson = await response.Content.ReadAsStringAsync();
+
+                    var responseobject = JsonSerializer.Deserialize<DeepseekResponse>(responsejson);
+
+                    if (responseobject != null && responseobject.Choices.Count > 0)
+                    {
+                        //返回首个message  这是因为回复其实也就一个并且是首个!
+                        return responseobject.Choices[0].Message.Content;
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    // 这里可以替换成你自己的日志记录或者异常处理逻辑
+                    return $"网络请求错误: {ex.Message}";
+                }
+                catch (JsonException ex)
+                {
+                    return $"JSON 解析错误: {ex.Message}";
+                }
+
+            }
+            return "异常错误";
+        }
+    }
+}
