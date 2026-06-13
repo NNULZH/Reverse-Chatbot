@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Reverse_Chatbot.Interfaces;
+using Reverse_Chatbot.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Reverse_Chatbot.Interfaces;
-using Reverse_Chatbot.Models;
 
 namespace Reverse_Chatbot.Services
 {
@@ -15,11 +17,12 @@ namespace Reverse_Chatbot.Services
         static readonly HttpClient httpClient = new HttpClient();
 
         string ApiKey;
-        static readonly string EndPoint = "https://api.deepseek.com";
+        static readonly string EndPoint = "https://api.deepseek.com/chat/completions";
 
         public DeepseekApi()
         {
-            this.ApiKey = "sk-45dbcbfa4dd54352bc2833562c5d223a";
+            this.ApiKey = File.ReadAllText
+                (@"C:\Users\Lenovo\Desktop\哪些东西？\密码\DeepSeekApi\apikey.txt").Trim(); 
         }
 
         public async Task<string> PostAsync(string request)

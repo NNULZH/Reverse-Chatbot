@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\source\\repos\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj": {}
+    "E:\\WPF\\Project Exercise\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\source\\repos\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj": {
+    "E:\\WPF\\Project Exercise\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj",
+        "projectUniqueName": "E:\\WPF\\Project Exercise\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj",
         "projectName": "Reverse Chatbot",
-        "projectPath": "C:\\Users\\Lenovo\\source\\repos\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj",
+        "projectPath": "E:\\WPF\\Project Exercise\\Reverse Chatbot\\Reverse Chatbot\\Reverse Chatbot.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\source\\repos\\Reverse Chatbot\\Reverse Chatbot\\obj\\",
+        "outputPath": "E:\\WPF\\Project Exercise\\Reverse Chatbot\\Reverse Chatbot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\c++工具\\NuGetPackages"
