@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reverse_Chatbot.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Reverse_Chatbot.Interfaces
 {
     internal interface IDeepseekApi
     {
-        public Task<string> PostAsync(string request);
+        public Task<string> PostAsync(List<DeepseekMessage> history);
     }
 }

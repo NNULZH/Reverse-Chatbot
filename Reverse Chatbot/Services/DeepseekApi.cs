@@ -25,10 +25,11 @@ namespace Reverse_Chatbot.Services
                 (@"C:\Users\Lenovo\Desktop\哪些东西？\密码\DeepSeekApi\apikey.txt").Trim(); 
         }
 
-        public async Task<string> PostAsync(string request)
+        //传进来一个json不好么?或者直接传入对应格式数组
+        public async Task<string> PostAsync(List<DeepseekMessage> history)
         {
-            var RequestData = new DeepseekRequest();
-            RequestData.Messages.Add(new DeepseekMessage { Role = "user",Content = request});
+            var RequestData = new DeepseekRequest();//嗯,发送就发送,还是不把存储耦合在这里了
+            RequestData.Messages.AddRange(history);
 
             string jsonBody = JsonSerializer.Serialize(RequestData);            
             var content = new StringContent(jsonBody,Encoding.UTF8, "application/json");

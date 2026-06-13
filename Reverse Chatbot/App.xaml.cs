@@ -23,7 +23,7 @@ namespace Reverse_Chatbot
 
             containerRegistry.Register<IDeepseekApi,DeepseekApi>();
             containerRegistry.Register<IAgentService,AgentService>();
-
+            containerRegistry.Register<IMemoryContextFactory, ContextFactory>();
 
             
         }
